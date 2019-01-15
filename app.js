@@ -5,7 +5,8 @@ new Vue({
       { task: "Take out trash", completed: false },
       { task: "Do Homework", completed: false }
     ],
-    newTodo: ""
+    newTodo: "",
+    completed: false
   },
   methods: {
     inputTodo: function(e) {
@@ -19,6 +20,18 @@ new Vue({
       };
       this.todos.push(newTodo);
       this.newTodo = "";
+    },
+    removeCompleted: function(e) {
+      e.preventDefault();
+      let todos = this.todos.slice().filter(todo => !todo.completed);
+      this.todos = todos;
+    }
+  },
+  computed: {
+    compClasses: function() {
+      return {
+        completed: this.completed
+      };
     }
   }
 });

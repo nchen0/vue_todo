@@ -12,12 +12,27 @@
   <body>
     <div id="todo">
       <h1>To Dos</h1>
-      <ul v-for="(todo, i) in todos">
-        <li>{{ todo.task }}</li>
+      <ul>
+        <li
+          v-for="(todo, i) in todos"
+          v-on:click="todo.completed = !todo.completed"
+          v-if="todo.completed"
+          class="completed"
+        >
+          {{ todo.task }}
+        </li>
+        <li v-on:click="todo.completed = !todo.completed" v-else>
+          {{ todo.task }}
+        </li>
       </ul>
       <form>
-        <input v-model="newTodo" placeholder="Add Todo" />
+        <input
+          v-on:keyup="inputTodo"
+          placeholder="Add Todo"
+          v-bind:value="newTodo"
+        />
         <button v-on:click="addTodo">Add Task</button>
+        <button v-on:click="removeCompleted">Remove Completed</button>
       </form>
     </div>
 
