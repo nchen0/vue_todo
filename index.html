@@ -16,12 +16,8 @@
         <li
           v-for="(todo, i) in todos"
           v-on:click="todo.completed = !todo.completed"
-          v-if="todo.completed"
-          class="completed"
+          v-bind:class="{completed: todo.completed}"
         >
-          {{ todo.task }}
-        </li>
-        <li v-on:click="todo.completed = !todo.completed" v-else>
           {{ todo.task }}
         </li>
       </ul>
